@@ -3,7 +3,6 @@ package com.apenasgabs.crudinhostore.controller;
 import java.util.List;
 import java.util.Optional;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -41,6 +40,15 @@ public class ProdutoController {
   public ResponseEntity<Produto> getProdutoPeloId(@PathVariable Long id) {
     return produtoRepository.findById(id).map(response -> ResponseEntity.ok(response))
         .orElse(ResponseEntity.notFound().build());
+  }
+
+  @GetMapping("/categoria/{categoriaId}")
+  public ResponseEntity<List<Produto>> getProdutosPorCategoria(@PathVariable Long categoriaId) {
+    List<Produto> produtos = produtoRepository.findByCategoriaId(categoriaId);
+    if (produtos.isEmpty()) {
+      return ResponseEntity.notFound().build();
+    }
+    return ResponseEntity.ok(produtos);
   }
 
   @PostMapping

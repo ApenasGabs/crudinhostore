@@ -28,6 +28,10 @@ public class Categoria {
   @Size(min = 5, max = 100)
   private String nome;
 
+  @OneToMany(fetch = FetchType.LAZY,mappedBy = "categoria", cascade = CascadeType.REMOVE)
+  @JsonIgnoreProperties("categoria")
+  private List<Produto> produtos;
+
   public long getCategoriaId() {
     return this.categoriaId;
   }
