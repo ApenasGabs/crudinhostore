@@ -8,6 +8,6 @@ import com.apenasgabs.crudinhostore.model.Produto;
 
 public interface ProdutoRepository extends JpaRepository<Produto, Long> {
 
-	List<Produto> findByCategoriaId(Long categoriaId);
+	List<Produto> findByCategoriaCategoriaId(Long categoriaId);
 
 }

@@ -44,7 +44,7 @@ public class ProdutoController {
 
   @GetMapping("/categoria/{categoriaId}")
   public ResponseEntity<List<Produto>> getProdutosPorCategoria(@PathVariable Long categoriaId) {
-    List<Produto> produtos = produtoRepository.findByCategoriaId(categoriaId);
+    List<Produto> produtos = produtoRepository.findByCategoriaCategoriaId(categoriaId);
     if (produtos.isEmpty()) {
       return ResponseEntity.notFound().build();
     }
