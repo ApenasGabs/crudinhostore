@@ -20,32 +20,40 @@ import jakarta.validation.constraints.Size;
 @Table(name = "tb_categoria")
 public class Categoria {
 
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private long categoriaId;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
 
-  @NotBlank(message = "Nome e obrigatório!")
-  @Size(min = 5, max = 100)
-  private String nome;
+    @NotBlank(message = "Nome e obrigatório!")
+    @Size(min = 5, max = 100)
+    private String nome;
 
-  @OneToMany(fetch = FetchType.LAZY,mappedBy = "categoria", cascade = CascadeType.REMOVE)
-  @JsonIgnoreProperties("categoria")
-  private List<Produto> produtos;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "categoria", cascade = CascadeType.REMOVE)
+    @JsonIgnoreProperties("categoria")
+    private List<Produto> produtos;
 
-  public long getCategoriaId() {
-    return this.categoriaId;
-  }
+    public long getId() {
+        return id;
+    }
 
-  public void setCategoriaId(long categoriaId) {
-    this.categoriaId = categoriaId;
-  }
+    public void setId(long id) {
+        this.id = id;
+    }
 
-  public String getNome() {
-    return this.nome;
-  }
+    public List<Produto> getProdutos() {
+        return produtos;
+    }
 
-  public void setNome(String nome) {
-    this.nome = nome;
-  }
+    public void setProdutos(List<Produto> produtos) {
+        this.produtos = produtos;
+    }
+
+    public String getNome() {
+        return this.nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
 
 }

@@ -44,7 +44,7 @@ public class ProdutoController {
 
   @GetMapping("/categoria/{categoriaId}")
   public ResponseEntity<List<Produto>> getProdutosPorCategoria(@PathVariable Long categoriaId) {
-    List<Produto> produtos = produtoRepository.findByCategoriaCategoriaId(categoriaId);
+    List<Produto> produtos = produtoRepository.findByCategoriaId(categoriaId);
     if (produtos.isEmpty()) {
       return ResponseEntity.notFound().build();
     }
@@ -59,7 +59,7 @@ public class ProdutoController {
 
   @PutMapping("/{id}")
   public ResponseEntity<Produto> editarProduto(@Valid @RequestBody Produto produtoAtualizado) {
-    return produtoRepository.findById(produtoAtualizado.getId_produto())
+    return produtoRepository.findById(produtoAtualizado.getId())
         .map(response -> ResponseEntity.status(HttpStatus.OK).body(produtoRepository.save(produtoAtualizado)))
         .orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).build());
   }

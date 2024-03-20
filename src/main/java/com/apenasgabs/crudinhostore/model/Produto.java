@@ -22,7 +22,7 @@ public class Produto {
 
   @Id
   @GeneratedValue
-  private Long id_produto;
+  private Long id;
 
   @NotBlank(message = "Nome e obrigatório!")
   @Size(min = 5, max = 100)
@@ -38,17 +38,38 @@ public class Produto {
   private BigDecimal preco;
 
   @ManyToOne
-  @JoinColumn(name = "categoria_id")
-  @JsonIgnoreProperties("produtos")
+  @JsonIgnoreProperties("produto")
   private Categoria categoria;
 
-  public Long getId_produto() {
-    return this.id_produto;
+  @ManyToOne
+  @JsonIgnoreProperties("produto")
+  private Usuario usuario;
+
+  public Categoria getCategoria() {
+    return categoria;
   }
 
-  public void setId_produto(Long id_produto) {
-    this.id_produto = id_produto;
+  public void setCategoria(Categoria categoria) {
+    this.categoria = categoria;
   }
+
+  public Long getId() {
+    return id;
+  }
+
+  public void setId(Long id) {
+    this.id = id;
+  }
+
+  public Usuario getUsuario() {
+    return usuario;
+  }
+
+  public void setUsuario(Usuario usuario) {
+    this.usuario = usuario;
+  }
+
+
 
   public String getNome() {
     return this.nome;

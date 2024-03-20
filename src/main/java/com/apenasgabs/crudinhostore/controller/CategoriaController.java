@@ -49,7 +49,7 @@ public class CategoriaController {
     if (!categoriaRepository.existsById(id)) {
       return ResponseEntity.notFound().build();
     }
-    categoria.setCategoriaId(id);
+    categoria.setId(id);
     return ResponseEntity.ok(categoriaRepository.save(categoria));
   }
 
